@@ -36,30 +36,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ✅ Actuator for monitoring -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <!-- ✅ Prometheus metrics -->
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <finalName>myapp</finalName>
-        <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.1</version>
-            </plugin>
-
             <!-- Sonar plugin -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
