@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: hotstarcont
-        image: rajeshtutta123/rajesh_hotstar-02-04-26:latest
+        image:jsaikumar9999/sai_hotstar
         ports:
         - containerPort: 4000
