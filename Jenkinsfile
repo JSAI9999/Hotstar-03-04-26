@@ -2,7 +2,7 @@
 pipeline {
     agent any
 
- # environment {
+  environment {
         SONARQUBE_ENV = 'soqu'
         DOCKER_IMAGE = "jsaikumar9999/sai_hotstar"
         DOCKER_CONTAINER = "4000" 
