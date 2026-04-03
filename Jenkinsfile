@@ -29,7 +29,7 @@ pipeline {
            }
         }
     }
-     #   stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_ENV}") {
                     sh 'mvn sonar:sonar'
@@ -37,20 +37,20 @@ pipeline {
             }
         }
 
-    #stage('Quality Gate') {
+    stage('Quality Gate') {
             steps {
                 timeout(time: 5, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
         }
-    #    stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $DOCKER_IMAGE:latest .'
             }
         }
 
-     #   stage('Push Docker Image') {
+        stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh '''
@@ -61,19 +61,19 @@ pipeline {
                 }
             }
         }
-     #    stage('Build') {
+         stage('Build') {
             steps {
                 echo "Building..."
             }
         }
 
-     #   stage('Test') {
+        stage('Test') {
             steps {
                 echo "Testing..."
             }
         }
 
-     #   stage('Deploy to EKS') {
+        stage('Deploy to EKS') {
             steps {
                 sh '''
                 export AWS_ACCESS_KEY_ID=$AWS_CREDS_USR
@@ -87,7 +87,7 @@ pipeline {
         }
     }
 
-#    post {
+    post {
         success {
             emailext(
                 subject: "Jenkins Job '${env.JOB_NAME}' Success",
@@ -96,7 +96,7 @@ pipeline {
             )
         }
 
-   #     failure {
+        failure {
             emailext(
                 subject: "Jenkins Job '${env.JOB_NAME}' Failed",
                 body: "Alert! Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed.\n\nCheck console output at ${env.BUILD_URL}",
