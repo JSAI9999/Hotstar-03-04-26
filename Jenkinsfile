@@ -3,7 +3,7 @@ pipeline {
     agent any
 
  # environment {
-        SONARQUBE_ENV = 'sq'
+        SONARQUBE_ENV = 'soqu'
         DOCKER_IMAGE = "jsaikumar9999/sai_hotstar"
         DOCKER_CONTAINER = "4000" 
         AWS_DEFAULT_REGION = 'us-east-1'
@@ -14,7 +14,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/rajeshtutta/Hotstar-02-04-26-.git'
+                git branch: 'main', url: 'https://github.com/JSAI9999/Hotstar-03-04-26.git'
             }
         }
         stage('BUILD') {
@@ -24,7 +24,7 @@ pipeline {
     }
  stage('JENKINS TO NEXUS') {
         steps {
-          withMaven(jdk: 'jdk21', maven: 'maven3', traceability: true) {
+          withMaven(jdk: 'JDK17', maven: 'maven3', traceability: true) {
              sh 'mvn deploy'
            }
         }
@@ -39,7 +39,7 @@ pipeline {
 
     #stage('Quality Gate') {
             steps {
-                timeout(time: 1, unit: 'MINUTES') {
+                timeout(time: 5, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
