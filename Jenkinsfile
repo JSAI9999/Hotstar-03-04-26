@@ -5,7 +5,10 @@ pipeline {
     environment {
         
         DOCKER_IMAGE = "jsaikumar9999/sai_hotstar"
-        DOCKER_CONTAINER = "4000"
+        DOCKER_CONTAINER = "4000" 
+        AWS_CREDS = credentials('aws-creds')
+        AWS_DEFAULT_REGION = 'us-east-1'
+        
         RECIPIENTS = 'jsaikumar99@gmail.com'
     }
 
@@ -56,7 +59,7 @@ pipeline {
                 export AWS_ACCESS_KEY_ID=$AWS_CREDS_USR
                 export AWS_SECRET_ACCESS_KEY=$AWS_CREDS_PSW
 
-                aws eks update-kubeconfig --region us-east-1 --name mycluster
+                aws eks update-kubeconfig --region us-east-1 --name saicluster
                 kubectl apply -f deployment.yml
                 kubectl apply -f service.yml
                 '''
