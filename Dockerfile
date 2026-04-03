@@ -7,8 +7,8 @@ RUN rm -rf /usr/local/tomcat/webapps/ROOT
 # Copy generated WAR file into webapps as ROOT
 COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 4000
+EXPOSE 4000
 
 # Start Tomcat
 CMD ["catalina.sh", "run"]
