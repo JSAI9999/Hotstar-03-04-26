@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        
+        SONARQUBE_ENV = 'sq'
         DOCKER_IMAGE = "jsaikumar9999/sai_hotstar"
         DOCKER_CONTAINER = "4000" 
         AWS_DEFAULT_REGION = 'us-east-1'
