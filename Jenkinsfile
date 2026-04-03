@@ -22,6 +22,28 @@ pipeline {
             sh 'mvn clean package -DskipTests'
         }
     }
+ stage('JENKINS TO NEXUS') {
+        steps {
+          withMaven(jdk: 'jdk21', maven: 'maven3', traceability: true) {
+             sh 'mvn deploy'
+}
+        }
+    }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv("${SONARQUBE_ENV}") {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 1, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $DOCKER_IMAGE:latest .'
