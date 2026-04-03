@@ -2,7 +2,7 @@
 pipeline {
     agent any
 
- #environment {
+ # environment {
         SONARQUBE_ENV = 'sq'
         DOCKER_IMAGE = "jsaikumar9999/sai_hotstar"
         DOCKER_CONTAINER = "4000" 
@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-    #    stage('Quality Gate') {
+    #stage('Quality Gate') {
             steps {
                 timeout(time: 1, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
