@@ -5,7 +5,7 @@ pipeline {
     environment {
         
         DOCKER_IMAGE = "jsaikumar9999/sai_hotstar"
-        DOCKER_CONTAINER = "
+        DOCKER_CONTAINER = "4000"
         RECIPIENTS = 'jsaikumar99@gmail.com'
     }
 
