@@ -33,6 +33,16 @@ jobs:
       - name: Package
         run: mvn package
 
+      - name: Check Files
+        run: |
+          pwd
+          echo "===== PROJECT FILES ====="
+          ls -la
+          echo "===== TARGET DIRECTORY ====="
+          ls -la target || true
+          echo "===== ALL JAR FILES ====="
+          find . -name "*.jar"
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
